@@ -141,14 +141,13 @@ Ensure the API_URL in your HTML matches the live backend endpoint.
 Frontend UI Preview
 
 
-UI showing input panel and demo data load.
+### 📍 Optimized Route Results  
+![Results UI](./Demo/Demo-1.png)
 
-Optimization Result View
+### 📊 Delivery Summary Card  
+![Summary UI](./Demo/Demo-2.png)
 
-
-Optimized route timeline and summary card.
-
-🧭 Usage Guide
+### 🧭 Usage Guide
 
 Go to the Live Demo link above.
 
@@ -166,7 +165,7 @@ View the “Optimization Result” — sequence of drop-offs, distance/time per 
 
 Inspect the “Delivery Summary” card for overall metrics.
 
-🚧 Future Enhancements
+### 🚧 Future Enhancements
 
 VRPTW (Vehicle Routing Problem with Time Windows): Allow each customer to specify a delivery time window (e.g., 9 AM–10 AM).
 
@@ -189,14 +188,6 @@ Thanks for checking out this project! Feel free to ⭐ the repo and provide feed
 
 ---
 
-### ✅ What You Should Do Next:
-- Replace `./assets/banner.png`, `screenshot1.png`, `screenshot2.png` with your actual images and file paths in your repo.  
-- Commit and push this `README.md` to your main branch.  
-- Ensure your Live Demo link is correct and pointing to the right frontend.  
-- Check the images render correctly on GitHub.  
-- Optionally add more screenshots if you have.
 
-Let me know if you’d like *additional sections* (e.g., **API Reference**, **Contributing Guide**, or **Changelog**) added to the README!
-::contentReference[oaicite:3]{index=3}
 
 
