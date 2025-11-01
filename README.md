@@ -175,11 +175,11 @@ Live Traffic & Road Networks: Replace static Haversine distances with real road 
 
 Multiple Vehicles & Depots: Optimize across multiple delivery vehicles and depots, enabling real-world fleet planning.
 
-📄 License
+### 📄 License
 
 This project is released under the MIT License — feel free to use, modify, and distribute it accordingly.
 
-🧑‍💻 Author
+### 🧑‍💻 Author
 
 Bramhendra C
 🔗 GitHub Profile
@@ -187,6 +187,7 @@ Bramhendra C
 Thanks for checking out this project! Feel free to ⭐ the repo and provide feedback or contributions.
 
 ---
+
 
 
 
