@@ -6,9 +6,10 @@ A proof-of-concept system for instant-delivery services combining **geospatial c
 Frontend UI Preview
 
 
-### 📍 Optimized Route Results  &  📊 Delivery Summary Card
-![Results UI](./Demo/Demo-1.jpg)
-
+### 📍 Optimized Route Results  
+![System UI](./Demo/Demo-1.jpg)
+### 📊 Delivery Summary Card
+![System UI](./Demo/Demo-1.jpg)
 ---
 
 ## 🚀 Live Demo  
@@ -183,6 +184,7 @@ Bramhendra C
 Thanks for checking out this project! Feel free to ⭐ the repo and provide feedback or contributions.
 
 ---
+
 
 
 
