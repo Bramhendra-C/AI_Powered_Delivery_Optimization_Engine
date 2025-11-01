@@ -2,7 +2,15 @@
 
 A proof-of-concept system for instant-delivery services combining **geospatial calculations** and **graph algorithms** to find the fastest delivery route.
 
-![Project Banner](./assets/banner.png) <!-- optional banner image -->
+🖼️ Screenshots & Visuals
+Frontend UI Preview
+
+
+### 📍 Optimized Route Results  
+![Results UI](./Demo/Demo-2.png)
+
+### 📊 Delivery Summary Card  
+![Summary UI](./Demo/Demo-1.png)
 
 ---
 
@@ -137,15 +145,6 @@ Enable GitHub Pages or another static site hosting platform.
 Live demo link: https://bramhendra-c.github.io/Blinkit-Order-Optimizer/
 
 Ensure the API_URL in your HTML matches the live backend endpoint.
-🖼️ Screenshots & Visuals
-Frontend UI Preview
-
-
-### 📍 Optimized Route Results  
-![Results UI](./Demo/Demo-2.png)
-
-### 📊 Delivery Summary Card  
-![Summary UI](./Demo/Demo-1.png)
 
 ### 🧭 Usage Guide
 
@@ -187,6 +186,7 @@ Bramhendra C
 Thanks for checking out this project! Feel free to ⭐ the repo and provide feedback or contributions.
 
 ---
+
 
 
 
