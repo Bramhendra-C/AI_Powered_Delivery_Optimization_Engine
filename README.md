@@ -2,130 +2,201 @@
 
 A proof-of-concept system for instant-delivery services combining **geospatial calculations** and **graph algorithms** to find the fastest delivery route.
 
----
-
-## 🚀 Status & Badges
-
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
-![FastAPI](https://img.shields.io/badge/Backend-FastAPI-green.svg)
-![Frontend](https://img.shields.io/badge/Frontend-TailwindCSS-blueviolet.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Status](https://img.shields.io/badge/Status-Prototype-orange.svg)
+![Project Banner](./assets/banner.png) <!-- optional banner image -->
 
 ---
 
-## ✨ Key Features
-
-- **🧩 FastAPI Backend:**  
-  High-performance API endpoint (`/optimize_route`) for handling route calculations.
-
-- **🌍 Geospatial Modeling:**  
-  Uses the **Haversine formula** to accurately calculate great-circle distances between any two Earth coordinates.
-
-- **🧠 Optimization Algorithm:**  
-  Implements the **Greedy Nearest Neighbor Heuristic** — an efficient solution for approximating the Traveling Salesman Problem (TSP).
-
-- **⏱️ Real-time ETA:**  
-  Calculates **Estimated Time of Arrival (ETA)** based on realistic travel speeds (default: 30 km/h).
-
-- **💻 Sleek Frontend:**  
-  Fully responsive **HTML + Tailwind CSS** interface for inputting coordinates and visualizing optimized routes.
-
-- **🔁 Resilient Networking:**  
-  Built-in **Exponential Backoff Retry** mechanism ensures stable communication between frontend and backend.
+## 🚀 Live Demo  
+Check out the live frontend here:  
+[https://bramhendra-c.github.io/Blinkit-Order-Optimizer/](https://bramhendra-c.github.io/Blinkit-Order-Optimizer/)
 
 ---
 
-## 🛠️ Tech Stack
+## 🧩 Key Features
 
-| Component           | Technology                            | Role |
-|---------------------|----------------------------------------|------|
-| **Backend Framework** | Python 3.x, FastAPI                    | High-performance API for optimization logic |
-| **Logic Core**        | Python, Math Library                  | Haversine distance + Nearest Neighbor algorithm |
-| **API Server**        | Uvicorn                              | ASGI server to run FastAPI |
-| **Frontend**          | HTML5, Tailwind CSS                   | Responsive UI and visualization |
-| **Interoperability**  | JavaScript, Fetch API, CORS           | Frontend-backend communication |
+- **FastAPI Backend:**  
+  High-performance API endpoint (`/optimize_route`) for handling delivery route calculations.
+
+- **Geospatial Modeling:**  
+  Uses the **Haversine formula** to compute distances between any two geographic points on Earth.
+
+- **Routing Optimization Algorithm:**  
+  Implements a **Nearest Neighbor heuristic** to approximate the Traveling Salesman Problem (TSP) — fast and scalable for dense delivery zones.
+
+- **Real-time ETA & Distance:**  
+  Computes total Estimated Time of Arrival (ETA) and distance based on an average delivery speed (default: 30 km/h).
+
+- **Responsive Frontend UI:**  
+  Built with **HTML5 + Tailwind CSS**, allowing users to input coordinates and view a step-by-step optimized route.
+
+- **Resilient Networking:**  
+  Frontend includes an **Exponential Backoff** retry mechanism for robust API communication.
 
 ---
 
-## 📐 Optimization Logic Explained
+## 🛠 Tech Stack
 
-The core optimization challenge is based on the **Traveling Salesman Problem (TSP)** — finding the shortest possible route visiting all destinations once and returning to the depot.
+| Component       | Technology                     | Role                                                |
+|-----------------|--------------------------------|-----------------------------------------------------|
+| Backend         | Python 3.x, FastAPI     | API server for optimization logic                   |
+| Logic Core      | Python (math library)          | Haversine distance & Nearest Neighbor optimization  |
+| API Server      | Uvicorn (ASGI)         | Runs the FastAPI application                        |
+| Frontend        | HTML, Tailwind CSS             | User interface and visualization                     |
+| Integration     | JavaScript (Fetch API, CORS)   | Connects frontend to backend, handles retry logic   |
 
-### ⚙️ Steps:
+---
+
+## 📐 How It Works
+
+The system addresses a version of the Traveling Salesman Problem (TSP): **visit all customer points once, starting from a store, and return (optional)** with minimal time/distance.
+
+### Steps:
 
 1. **Distance Calculation:**  
-   Uses the **Haversine formula** (in `optimizer_api.py`) to compute distances between store and customers in kilometers.
+   The `haversine` function uses the Haversine formula to compute great-circle distances (in km) between two lat-lon points.
 
 2. **Time Estimation:**  
-   Converts distances into travel times using a fixed average speed (default: 30 km/h).
+   Travel time is derived by converting distance into time using a fixed average speed (default = 30 km/h).
 
 3. **Routing Strategy:**  
-   The `nearest_neighbor_optimization` function:
-   - Starts at the depot.
-   - Repeatedly chooses the **nearest unvisited** customer.
-   - Continues until all drop-offs are complete.
+   The `nearest_neighbor_optimization` function:  
+   - Starts at the store location.  
+   - Repeatedly selects the nearest unvisited customer location.  
+   - Continues until all drop-offs are done.  
+   - Returns a sequence of segments, total distance, total time, and the visitation order.
 
-### ⚖️ Trade-offs
-- The **Nearest Neighbor heuristic** is **fast and scalable**, ideal for dense zones.
-- However, it’s **not guaranteed optimal**.  
-  For absolute shortest routes, consider advanced algorithms like **Dijkstra’s**, **Simulated Annealing**, or **Brute Force** (for very small datasets).
-
----
-
-## 🚀 Getting Started
-
-### 🧩 Prerequisites
-- Python **3.8+** installed on your system.
+### Trade-Offs  
+- The Nearest Neighbor heuristic is **fast and scalable**, making it suitable for many stops.  
+- However, it **does not guarantee** the absolute shortest route (i.e., *optimal*) — more advanced algorithms (Simulated Annealing, Branch & Bound, etc.) would be required for that.
 
 ---
 
-### 🧠 Step 1: Set up and Run the Backend
+## 📁 Repo Structure
 
-1. **Install required libraries:**
+Blinkit-Order-Optimizer/
+│
+├── optimizer_api.py ← FastAPI backend code
+├── optimizer_frontend.html ← Frontend UI (HTML + Tailwind)
+├── requirements.txt ← Python dependencies
+├── render.yaml ← (optional) Render.com deployment spec
+├── README.md ← This file
+└── assets/ ← Screenshots, banner images etc.
+├── banner.png
+├── screenshot1.png
+└── screenshot2.png
+
+
+---
+
+## 🔧 Getting Started (Locally)
+
+### Prerequisites  
+- Python 3.8+ installed on your machine.
+
+### Backend Setup
+
+1. Install dependencies:
+
    ```bash
    pip install fastapi uvicorn pydantic python-multipart starlette-cors
-2.Save backend code:
-  Save the Python file as optimizer_api.py.
-
-3.Start the FastAPI server:
+2.Run the API server:
   uvicorn optimizer_api:app --reload
-  The server will start on: http://127.0.0.1:8000
+The server will be available at http://127.0.0.1:8000.
 
-  
-🌐 Step 2: Run the Frontend
+3.Verify the root endpoint:
+    GET http://127.0.0.1:8000/
+You should receive:
 
-Save frontend file:
-Save the HTML code as optimizer_frontend.html.
+{
+  "message": "Blinkit Order Optimizer API is running. Use the /optimize_route endpoint."
+}
+Frontend Setup
 
-Open in browser:
-Simply double-click the file or open it in your browser.
-💡 Usage Guide
+1.Open optimizer_frontend.html in your browser (double-click the file or use Live Server).
 
-Ensure the FastAPI server is running.
+2.Ensure the API_URL in the script matches your running backend.
+  const API_URL = 'https://blinkit-order-optimizer-1.onrender.com/optimize_route';
+3.Load demo data and click "Calculate Fastest Route" to test.
+🌐 Deployment
+Backend (Render.com)
 
-Open the frontend HTML file.
+Add requirements.txt and (optionally) render.yaml.
 
-Click "Calculate Fastest Route" to start optimization.
+On Render.com: create a new Web Service, connect your GitHub repo, set build command to pip install -r requirements.txt, and start command to:
+uvicorn optimizer_api:app --host 0.0.0.0 --port $PORT
+After deployment, the service will provide a public URL (e.g., https://blinkit-order-optimizer-1.onrender.com).
 
-View the step-by-step route and Total Distance + ETA in the results panel.
+Update API_URL in the frontend to point to this live backend.
 
-✅ You can also input your own coordinates (latitude, longitude pairs per line) to test different areas.
-📈 Future Enhancements
-Feature	Description
-🚚 VRPTW (Vehicle Routing Problem with Time Windows)	Add delivery time window constraints per customer.
-📦 Capacity Constraints	Incorporate vehicle weight/volume limits, enabling multi-trip planning.
-🗺️ Live Traffic Integration	Replace static Haversine distances with real-world Maps Directions API (e.g., Google Maps, OpenRouteService).
-📜 License
+Frontend (GitHub Pages, Static Site)
 
-This project is released under the MIT License
-.
+Host the optimizer_frontend.html in your repository or another dedicated repo.
 
-🧠 Author
+Enable GitHub Pages or another static site hosting platform.
+
+Live demo link: https://bramhendra-c.github.io/Blinkit-Order-Optimizer/
+
+Ensure the API_URL in your HTML matches the live backend endpoint.
+🖼️ Screenshots & Visuals
+Frontend UI Preview
+
+
+UI showing input panel and demo data load.
+
+Optimization Result View
+
+
+Optimized route timeline and summary card.
+
+🧭 Usage Guide
+
+Go to the Live Demo link above.
+
+In the “Input Locations” panel:
+
+Enter the store location (latitude, longitude).
+
+Enter one or more customer drop-off points (each lat, lon pair on a new line).
+
+Click “Use Demo Data” to auto-fill example locations.
+
+Click Calculate Fastest Route.
+
+View the “Optimization Result” — sequence of drop-offs, distance/time per leg, total distance, total time.
+
+Inspect the “Delivery Summary” card for overall metrics.
+
+🚧 Future Enhancements
+
+VRPTW (Vehicle Routing Problem with Time Windows): Allow each customer to specify a delivery time window (e.g., 9 AM–10 AM).
+
+Capacity Constraints: Model vehicle capacity (number of orders, weight/volume) and generate multiple routes/trips if capacity is exceeded.
+
+Live Traffic & Road Networks: Replace static Haversine distances with real road network distances and traffic data (via Google Maps API, OpenRouteService, OSRM).
+
+Multiple Vehicles & Depots: Optimize across multiple delivery vehicles and depots, enabling real-world fleet planning.
+
+📄 License
+
+This project is released under the MIT License — feel free to use, modify, and distribute it accordingly.
+
+🧑‍💻 Author
 
 Bramhendra C
+🔗 GitHub Profile
+
+Thanks for checking out this project! Feel free to ⭐ the repo and provide feedback or contributions.
 
 ---
 
-Would you like me to make this **README include GitHub-style code blocks for both backend and frontend setup** (with example snippets of the API route and frontend fetch call)?  
-That makes it look more complete for recruiters or project showcases.
+### ✅ What You Should Do Next:
+- Replace `./assets/banner.png`, `screenshot1.png`, `screenshot2.png` with your actual images and file paths in your repo.  
+- Commit and push this `README.md` to your main branch.  
+- Ensure your Live Demo link is correct and pointing to the right frontend.  
+- Check the images render correctly on GitHub.  
+- Optionally add more screenshots if you have.
+
+Let me know if you’d like *additional sections* (e.g., **API Reference**, **Contributing Guide**, or **Changelog**) added to the README!
+::contentReference[oaicite:3]{index=3}
+
+
