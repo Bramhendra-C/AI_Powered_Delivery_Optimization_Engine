@@ -14,7 +14,7 @@ Frontend UI Preview
 
 ## 🚀 Live Demo  
 Check out the live frontend here:  
-[https://bramhendra-c.github.io/Blinkit-Order-Optimizer/](https://bramhendra-c.github.io/Blinkit-Order-Optimizer/)
+[https://bramhendra-c.github.io/AI_Powered_Delivery_Optimization_Engine/](https://bramhendra-c.github.io/AI_Powered_Delivery_Optimization_Engine/)
 
 ---
 
@@ -184,6 +184,7 @@ Bramhendra C
 Thanks for checking out this project! Feel free to ⭐ the repo and provide feedback or contributions.
 
 ---
+
 
 
 
