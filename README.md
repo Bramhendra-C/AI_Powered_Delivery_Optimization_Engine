@@ -1,200 +1,160 @@
-# ⚡ Blinkit Order Optimizer 🛵
+AI Powered Delivery Optimization Engine
 
-A proof-of-concept system for instant-delivery services combining **geospatial calculations** and **graph algorithms** to find the fastest delivery route.
+AI Powered Delivery Optimization Engine is a proof-of-concept system for instant-delivery services that combines geospatial calculations and graph algorithms to compute fast delivery routes. It includes a FastAPI backend for route optimization and a responsive frontend to visualize the results.
 
-🖼️ Screenshots & Visuals
-Frontend UI Preview
+Live Demo:
+https://bramhendra-c.github.io/AI_Powered_Delivery_Optimization_Engine/
+ 
+GitHub
 
+Table of Contents
 
-### 📍 Input Routes 
-![System UI](./Demo/DEMO-2.jpg)
-### 📊 Optimized route & Delivery Summary Card
-![System UI](./Demo/Demo-1.jpg)
----
+Key Features
 
-## 🚀 Live Demo  
-Check out the live frontend here:  
-[https://bramhendra-c.github.io/AI_Powered_Delivery_Optimization_Engine/](https://bramhendra-c.github.io/AI_Powered_Delivery_Optimization_Engine/)
+Tech Stack
 
----
+Core Concepts
 
-## 🧩 Key Features
+Installation
 
-- **FastAPI Backend:**  
-  High-performance API endpoint (`/optimize_route`) for handling delivery route calculations.
+Usage
 
-- **Geospatial Modeling:**  
-  Uses the **Haversine formula** to compute distances between any two geographic points on Earth.
+API Endpoints
 
-- **Routing Optimization Algorithm:**  
-  Implements a **Nearest Neighbor heuristic** to approximate the Traveling Salesman Problem (TSP) — fast and scalable for dense delivery zones.
+Frontend
 
-- **Real-time ETA & Distance:**  
-  Computes total Estimated Time of Arrival (ETA) and distance based on an average delivery speed (default: 30 km/h).
+Project Structure
 
-- **Responsive Frontend UI:**  
-  Built with **HTML5 + Tailwind CSS**, allowing users to input coordinates and view a step-by-step optimized route.
+Future Enhancements
 
-- **Resilient Networking:**  
-  Frontend includes an **Exponential Backoff** retry mechanism for robust API communication.
+License
 
----
+Author
 
-## 🛠 Tech Stack
+Key Features
 
-| Component       | Technology                     | Role                                                |
-|-----------------|--------------------------------|-----------------------------------------------------|
-| Backend         | Python 3.x, FastAPI     | API server for optimization logic                   |
-| Logic Core      | Python (math library)          | Haversine distance & Nearest Neighbor optimization  |
-| API Server      | Uvicorn (ASGI)         | Runs the FastAPI application                        |
-| Frontend        | HTML, Tailwind CSS             | User interface and visualization                     |
-| Integration     | JavaScript (Fetch API, CORS)   | Connects frontend to backend, handles retry logic   |
+FastAPI Backend for optimized delivery route computation. 
+GitHub
 
----
+Geospatial Modeling using the Haversine formula for accurate distance measurement. 
+GitHub
 
-## 📐 How It Works
+Routing Optimization via a Nearest Neighbor heuristic for scalable route approximations. 
+GitHub
 
-The system addresses a version of the Traveling Salesman Problem (TSP): **visit all customer points once, starting from a store, and return (optional)** with minimal time/distance.
+Responsive Frontend UI built with HTML and Tailwind CSS for interactive route input and visualization. 
+GitHub
 
-### Steps:
+Live Demo Integration over GitHub Pages. 
+GitHub
 
-1. **Distance Calculation:**  
-   The `haversine` function uses the Haversine formula to compute great-circle distances (in km) between two lat-lon points.
+Tech Stack
+Component	Technology
+Backend API	Python, FastAPI
+ASGI Server	Uvicorn
+Frontend UI	HTML5, Tailwind CSS, JS
+Optimization Logic	Python Math Library
+Deployment	GitHub Pages (Frontend)
+Core Concepts
 
-2. **Time Estimation:**  
-   Travel time is derived by converting distance into time using a fixed average speed (default = 30 km/h).
+This system solves a variant of the Traveling Salesman Problem (TSP) to visit customer locations efficiently starting from a store/depot.
 
-3. **Routing Strategy:**  
-   The `nearest_neighbor_optimization` function:  
-   - Starts at the store location.  
-   - Repeatedly selects the nearest unvisited customer location.  
-   - Continues until all drop-offs are done.  
-   - Returns a sequence of segments, total distance, total time, and the visitation order.
+Distance Calculation: Calculates great-circle distances using the Haversine formula. 
+GitHub
 
-### Trade-Offs  
-- The Nearest Neighbor heuristic is **fast and scalable**, making it suitable for many stops.  
-- However, it **does not guarantee** the absolute shortest route (i.e., *optimal*) — more advanced algorithms (Simulated Annealing, Branch & Bound, etc.) would be required for that.
+Nearest Neighbor Heuristic: At each step, the algorithm selects the nearest unvisited point, building a quick and scalable route. 
+GitHub
 
----
+ETA & Distance Estimation: Translates distances into estimated delivery time using a configurable average speed. 
+GitHub
 
-## 📁 Repo Structure
+Installation
+Prerequisites
 
-Blinkit-Order-Optimizer/
-│
-├── optimizer_api.py ← FastAPI backend code
-├── optimizer_frontend.html ← Frontend UI (HTML + Tailwind)
-├── requirements.txt ← Python dependencies
-├── render.yaml ← (optional) Render.com deployment spec
-├── README.md ← This file
-└── assets/ ← Screenshots, banner images etc.
-├── banner.png
-├── screenshot1.png
-└── screenshot2.png
+Python 3.8+
+
+pip (Python package installer)
+
+Backend Setup (Local)
+
+Clone the repository:
+
+git clone https://github.com/Bramhendra-C/AI_Powered_Delivery_Optimization_Engine.git
+cd AI_Powered_Delivery_Optimization_Engine
 
 
----
+Install dependencies:
 
-## 🔧 Getting Started (Locally)
+pip install -r requirements.txt
 
-### Prerequisites  
-- Python 3.8+ installed on your machine.
 
-### Backend Setup
+Run the FastAPI server:
 
-1. Install dependencies:
+uvicorn optimizer_api:app --reload
 
-   ```bash
-   pip install fastapi uvicorn pydantic python-multipart starlette-cors
-2.Run the API server:
-  uvicorn optimizer_api:app --reload
-The server will be available at http://127.0.0.1:8000.
 
-3.Verify the root endpoint:
-    GET http://127.0.0.1:8000/
-You should receive:
+The API will be available at:
+http://127.0.0.1:8000 
+GitHub
 
-{
-  "message": "Blinkit Order Optimizer API is running. Use the /optimize_route endpoint."
-}
-Frontend Setup
+Usage
+Backend
+Test the Base Endpoint
+curl http://127.0.0.1:8000
 
-1.Open optimizer_frontend.html in your browser (double-click the file or use Live Server).
 
-2.Ensure the API_URL in the script matches your running backend.
-  const API_URL = 'https://blinkit-order-optimizer-1.onrender.com/optimize_route';
-3.Load demo data and click "Calculate Fastest Route" to test.
-🌐 Deployment
-Backend (Render.com)
+Expected response:
 
-Add requirements.txt and (optionally) render.yaml.
+{ "message": "Blinkit Order Optimizer API is running." }
 
-On Render.com: create a new Web Service, connect your GitHub repo, set build command to pip install -r requirements.txt, and start command to:
-uvicorn optimizer_api:app --host 0.0.0.0 --port $PORT
-After deployment, the service will provide a public URL (e.g., https://blinkit-order-optimizer-1.onrender.com).
+Optimize Route
 
-Update API_URL in the frontend to point to this live backend.
+Use the /optimize_route POST endpoint to submit coordinates and receive an optimized route:
 
-Frontend (GitHub Pages, Static Site)
+Example:
 
-Host the optimizer_frontend.html in your repository or another dedicated repo.
+curl -X POST http://127.0.0.1:8000/optimize_route \
+  -H "Content-Type: application/json" \
+  -d '{"start": [lat, lng], "stops": [[lat, lng], ...]}'
 
-Enable GitHub Pages or another static site hosting platform.
+Frontend
 
-Live demo link: https://bramhendra-c.github.io/Blinkit-Order-Optimizer/
+Open the optimizer_frontend.html file in a browser or host it on a static server. The frontend interacts with the backend API to display route results dynamically using JavaScript and Tailwind CSS. 
+GitHub
 
-Ensure the API_URL in your HTML matches the live backend endpoint.
+Tip: Ensure the API_URL in the script matches your running backend.
 
-### 🧭 Usage Guide
+Project Structure
+AI_Powered_Delivery_Optimization_Engine/
+├── optimizer_api.py             # FastAPI backend code
+├── optimizer_frontend.html      # Frontend UI file
+├── requirements.txt             # Python dependencies
+├── render.yaml                  # (optional) deployment config
+├── README.md                   # Project README
+└── assets/                     # UI assets (screenshots, images)
 
-Go to the Live Demo link above.
 
-In the “Input Locations” panel:
+GitHub
 
-Enter the store location (latitude, longitude).
+Future Enhancements
 
-Enter one or more customer drop-off points (each lat, lon pair on a new line).
+Exact Optimization Algorithms (Branch & Bound, Genetic Algorithms).
 
-Click “Use Demo Data” to auto-fill example locations.
+Time Windows / Constraints Support (VRPTW).
 
-Click Calculate Fastest Route.
+Multiple Vehicles & Depots Optimization.
 
-View the “Optimization Result” — sequence of drop-offs, distance/time per leg, total distance, total time.
+Integration with Real Road Networks & Traffic APIs (e.g., Google Maps, OSRM). 
+GitHub
 
-Inspect the “Delivery Summary” card for overall metrics.
+License
 
-### 🚧 Future Enhancements
+This project is released under the MIT License. 
+GitHub
 
-VRPTW (Vehicle Routing Problem with Time Windows): Allow each customer to specify a delivery time window (e.g., 9 AM–10 AM).
-
-Capacity Constraints: Model vehicle capacity (number of orders, weight/volume) and generate multiple routes/trips if capacity is exceeded.
-
-Live Traffic & Road Networks: Replace static Haversine distances with real road network distances and traffic data (via Google Maps API, OpenRouteService, OSRM).
-
-Multiple Vehicles & Depots: Optimize across multiple delivery vehicles and depots, enabling real-world fleet planning.
-
-### 📄 License
-
-This project is released under the MIT License — feel free to use, modify, and distribute it accordingly.
-
-### 🧑‍💻 Author
+Author
 
 Bramhendra C
-🔗 GitHub Profile
-
-Thanks for checking out this project! Feel free to ⭐ the repo and provide feedback or contributions.
-
----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+GitHub: https://github.com/Bramhendra-C
+ 
+GitHub
